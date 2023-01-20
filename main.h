@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#defined UNUSED(x) (void)(x)
-#defined BUFF_SIZE 1024
+#define UNUSED(x) (void)(x)
+#define BUFF_SIZE 1024
 
 /* FLAGS */
 #define F_MINUS 1
