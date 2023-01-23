@@ -53,7 +53,8 @@ int write_number(int is_negative, int ind, char buffer[],
 		precision, length, padd, extra_ch));
 }
 
-int write_num(int ind, char buffer[], int flags, int width, int prec, int length, char padd, char extra_c)
+int write_num(int ind, char buffer[], int flags,
+	int width, int prec, int length, char padd, char extra_c)
 {
 	int i, padd_start = 1;
 
