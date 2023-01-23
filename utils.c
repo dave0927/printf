@@ -5,14 +5,14 @@
  * @c: Char to be evaluated.
  * Return: 1 if c is printable, 0 otherwise
  */
- 
+
 int is_printable(char c)
 {
 	if (c >= 32 && c < 127)
 	{
 		return (1);
 	}
-	
+
 	return (0);
 }
 
@@ -45,7 +45,7 @@ int append_hexa_code(char ascii_code, char buffer[], int i)
  * @c: Char to be evaluated
  * Return: 1 if c is a digit, 0 otherwise
  */
- 
+
 int is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -88,6 +88,6 @@ long int convert_size_unsgnd(unsigned long int num, int size)
 	{
 		return ((unsigned short)num);
 	}
-	
+
 	return ((unsigned int)num);
 }
