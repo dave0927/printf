@@ -1,16 +1,5 @@
 #include "main.h"
 
-/**
- * handle_write_char - Prints a string
- * @c: char types.
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags.
- * @width: get width.
- * @precision: precision specifier
- * @size: Size specifier
- * Return: Number of chars printed.
- */
-
 int handle_write_char(char c, char buffer[], int flags,
 	int width, int precision, int size)
 {
@@ -34,10 +23,10 @@ int handle_write_char(char c, char buffer[], int flags,
 
 		if (flags & F_MINUS)
 			return (write(1, &buffer[0], 1) +
-					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
+				write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
 		else
 			return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
-					write(1, &buffer[0], 1));
+				write(1, &buffer[0], 1));
 	}
 
 	return (write(1, &buffer[0], 1));
@@ -64,9 +53,8 @@ int write_number(int is_negative, int ind, char buffer[],
 		precision, length, padd, extra_ch));
 }
 
-int write_num(int ind, char buffer[],
-	int flags, int width, int prec,
-	int length, char padd, char extra_c)
+int write_num(int ind, char buffer[], int flags, int width,
+	int prec, int length, char padd, char extra_c)
 {
 	int i, padd_start = 1;
 
