@@ -11,8 +11,8 @@
  * Return: Number of chars printed.
  */
 
-int handle_write_char(char c, char buffer[], int flags,
-	int width, int precision, int size)
+int handle_write_char(char c, char buffer[],
+	int flags, int width, int precision, int size)
 {
 	int i = 0;
 	char padd = ' ';
