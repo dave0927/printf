@@ -11,8 +11,8 @@
  * Return: Number of chars printed.
  */
 
-int handle_write_char(char c, char buffer[],
-	int flags, int width, int precision, int size)
+int handle_write_char(char c, char buffer[], int flags,
+	int width, int precision, int size)
 {
 	int i = 0;
 	char padd = ' ';
@@ -213,7 +213,9 @@ int write_pointer(char buffer[], int ind, int length, int width,
 	{
 		for (i = 3; i < width - length + 3; i++)
 			buffer[i] = padd;
+		
 		buffer[i] = '\0';
+		
 		if (flags & F_MINUS && padd == ' ')
 		{
 			buffer[--ind] = 'x';
@@ -222,8 +224,7 @@ int write_pointer(char buffer[], int ind, int length, int width,
 			if (extra_c)
 				buffer[--ind] = extra_c;
 
-			return (write(1, &buffer[ind], length) +
-				write(1, &buffer[3], i - 3));
+			return (write(1, &buffer[ind], length) + write(1, &buffer[3], i - 3));
 		}
 		else if (!(flags & F_MINUS) && padd == ' ')/* extra char to left of buffer */
 		{
