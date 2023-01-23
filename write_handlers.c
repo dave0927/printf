@@ -206,54 +206,29 @@ int write_unsgnd(int is_negative, int ind, char buffer[],
  * Return: Number of written chars.
  */
 
-int write_pointer(char buffer[], int ind, int length, int width,
-		  int flags, char padd, char extra_c, int padd_start)
+int format_buffer(char buffer[], int buffer_length, int width,
+		int flags, char padding_char, char extra_char)
 {
-	int i;
+	int i = 0;
 
-	if (width > length)
+	if (width > buffer_length)
 	{
-		for (i = 3; i < width - length + 3; i++)
-			buffer[i] = padd;
-		buffer[i] = '\0';
-		if (flags & F_MINUS && padd == ' ')
+		for (i = 0; i < width - buffer_length; i++)
 		{
-			buffer[--ind] = 'x';
-			buffer[--ind] = '0';
-
-			if (extra_c)
-				buffer[--ind] = extra_c;
-
-			return (write(1, &buffer[ind], length) + write(1, &buffer[3], i - 3));
-		}
-		else if (!(flags & F_MINUS) && padd == ' ')
-		{
-			buffer[--ind] = 'x';
-			buffer[--ind] = '0';
-
-			if (extra_c)
-				buffer[--ind] = extra_c;
-
-			return (write(1, &buffer[3], i - 3) + write(1, &buffer[ind], length));
-		}
-		else if (!(flags & F_MINUS) && padd == '0')
-		{
-			if (extra_c)
-				buffer[--padd_start] = extra_c;
-
-			buffer[1] = '0';
-			buffer[2] = 'x';
-
-			return (write(1, &buffer[padd_start], i - padd_start) +
-				write(1, &buffer[ind], length - (1 - padd_start) - 2));
+			buffer[i] = padding_char;
 		}
 	}
 
-	buffer[--ind] = 'x';
-	buffer[--ind] = '0';
+	buffer[i++] = '0';
+	buffer[i++] = 'x';
 
-	if (extra_c)
-		buffer[--ind] = extra_c;
+	if (extra_char)
+		buffer[i++] = extra_char;
 
-	return (write(1, &buffer[ind], BUFF_SIZE - ind - 1));
+	for (int j = 0; j < buffer_length; j++)
+	{
+		buffer[i++] = buffer[j];
+	}
+	buffer[i] = '\0';
+	return write(1, buffer, i);
 }
