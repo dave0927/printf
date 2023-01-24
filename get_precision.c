@@ -29,16 +29,14 @@ int get_precision(const char *format, int *i, va_list list)
 		{
 			curr_i++;
 			precision = va_arg(list, int);
-			if(precision < -1)
-				return(-1);
 			break;
 		}
 		else
 			break;
 	}
 
-	if(precision < -1)
-		precision = -1;
+	if(precision < 0)
+		return -1;
 	*i = curr_i - 1;
 
 	return (precision);
