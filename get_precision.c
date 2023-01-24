@@ -5,7 +5,6 @@
  * @format: Formatted string in which to print the arguments
  * @i: List of arguments to be printed.
  * @list: list of arguments.
- *
  * Return: Precision.
  */
 int get_precision(const char *format, int *i, va_list list)
@@ -35,19 +34,7 @@ int get_precision(const char *format, int *i, va_list list)
 			break;
 	}
 
-	precision = check_precision(precision);
 	*i = curr_i - 1;
 
 	return (precision);
-}
-
-int check_precision(int precision)
-{
-	int max_precision = 100;
-	
-	if (precision < 0)
-		return 0;
-	if (precision > max_precision)
-		return max_precision;
-	return precision;
 }
