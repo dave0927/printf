@@ -12,6 +12,7 @@ int get_precision(const char *format, int *i, va_list list)
 {
 	int curr_i = *i + 1;
 	int precision = -1;
+	int max_precision = 100;
 
 	if (format[curr_i] != '.')
 		return (precision);
@@ -34,10 +35,10 @@ int get_precision(const char *format, int *i, va_list list)
 		else
 			break;
 	}
-	
-	if (precision < 0 || precision > BUFF_SIZE)
-		precision = BUFF_SIZE;
-	
+
+	if (precision < 0 || precision > max_precision)
+		precision = max_precision;
+
 	*i = curr_i - 1;
 
 	return (precision);
